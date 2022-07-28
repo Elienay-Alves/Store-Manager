@@ -18,10 +18,14 @@ const productController = {
     }
   },
 
-  async create(req, res) {
-    const { name } = req.body;
-    const item = await productService.create(name);
-    return res.status(201).json(item);
+  async create(req, res, next) {
+    try {
+      const { name } = await productService.validateBodyCreate(req.body);
+      const item = await productService.create(name);
+      return res.status(201).json(item);
+    } catch (err) {
+      next(err)
+    }
   }
 };
 
