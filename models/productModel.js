@@ -17,7 +17,7 @@ const productModel = {
     const sql = 'INSERT INTO products (name) VALUES (?)';
     const [{ insertId: id }] = await db.query(sql, [name]);
     return { name, id };
-  }
+  },
 };
 
 module.exports = productModel;

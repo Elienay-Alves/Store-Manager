@@ -13,8 +13,8 @@ const productController = {
       const { id } = req.params;
       const item = await productService.listId(id);
       return res.status(200).json(item);
-    } catch (err) {
-      return res.status(404).json({ message: err.message });
+    } catch (error) {
+      return res.status(404).json({ message: error.message });
     }
   },
 
@@ -23,10 +23,10 @@ const productController = {
       const { name } = await productService.validateBodyCreate(req.body);
       const item = await productService.create(name);
       return res.status(201).json(item);
-    } catch (err) {
-      next(err)
+    } catch (error) {
+      next(error);
     }
-  }
+  },
 };
 
 module.exports = productController;

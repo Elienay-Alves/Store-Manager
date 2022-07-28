@@ -1,7 +1,6 @@
 const Joi = require('joi');
 const productModel = require('../models/productModel');
 
-
 const productService = {
 
   async validateBodyCreate(value) {
