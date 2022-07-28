@@ -12,6 +12,12 @@ const productModel = {
     const [[item]] = await db.query(sql, [id]);
     return item;
   },
+
+  async create(name) {
+    const sql = 'INSERT INTO products (name) VALUES (?)';
+    const [{ insertId: id }] = await db.query(sql, [name]);
+    return { name, id };
+  }
 };
 
 module.exports = productModel;
