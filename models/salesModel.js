@@ -13,8 +13,7 @@ const salesModel = {
     VALUES (?,?,?)`;
     const [{ insertId }] = await db.query(sql, [id, value.productId, value.quantity]);
     return insertId;
-  }
+  },
 };
 
 module.exports = salesModel;
-
