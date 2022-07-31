@@ -36,7 +36,7 @@ const productService = {
       name,
     };
     return result;
-  }
+  },
 };
 
 module.exports = productService;

@@ -5,7 +5,7 @@ const product = Router();
 
 product.get('/:id', productController.readId);
 product.get('/', productController.read);
-product.put('/:id', productController.update)
+product.put('/:id', productController.update);
 product.post('/', productController.create);
 
 module.exports = product;

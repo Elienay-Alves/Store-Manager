@@ -36,8 +36,8 @@ const productController = {
       return res.status(200).json(result);
     } catch (err) {
       next(err);
-    }
-  }
+    };
+  },
 };
 
 module.exports = productController;
