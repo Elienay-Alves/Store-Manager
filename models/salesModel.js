@@ -33,6 +33,15 @@ const salesModel = {
     const [item] = await db.query(sql, [id]);
     return item;
   },
+
+  async delete(id) {
+    const sql = `
+    DELETE FROM sales
+    WHERE id = ?;`;
+
+    await db.query(sql, [id]);
+    return true;
+  },
 };
 
 module.exports = salesModel;

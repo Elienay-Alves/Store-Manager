@@ -35,6 +35,12 @@ const salesService = {
     return item;
   },
 
+  async delete(id) {
+    await this.readId(id);
+    await salesModel.delete(id);
+    return true;
+  },
+
 };
 
 module.exports = salesService;
