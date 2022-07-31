@@ -8,10 +8,10 @@ const salesController = {
     try {
       const value = req.body;
       const data = await Promise
-        .all(value.map((item) => salesService.validateBodyCreate(item)),);
+        .all(value.map((item) => salesService.validateBodyCreate(item)));
 
       await Promise
-        .all(value.map((item) => productService.listId(item.productId)),);
+        .all(value.map((item) => productService.listId(item.productId)));
 
       const result = await salesService.createSaleProduct(data);
 
