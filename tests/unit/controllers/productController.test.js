@@ -47,4 +47,18 @@ describe('controllers/productControllers', () => {
       chai.expect(res.status.getCall(0).args[0]).to.equal(404);
     })
   })
+  describe('create', () => {
+    it('Retorna erro se a validação falhar', () => {
+      sinon.stub(productService, 'validateBodyCreate').rejects();
+
+      chai.expect(productController.create({}, {})).eventually.to.be.rejected;
+    })
+
+    it("Retorna erro se productController.create falhar", () => {
+      sinon.stub(productService, "validateBodyCreate").resolves();
+      sinon.stub(productService, "create").rejects();
+
+      chai.expect(productController.create({}, {})).eventually.to.be.rejected;
+    });
+  })
 })
