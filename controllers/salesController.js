@@ -4,6 +4,21 @@ const productService = require('../services/productService');
 const salesController = {
   /** @type {import('express').RequestHandler} */
 
+  async list(_req, res) {
+    const items = await salesService.list();
+    return res.status(200).json(items);
+  },
+
+  async listId(req, res, next) {
+    try {
+      const { id } = req.params;
+      const item = await salesService.listId(id);
+      return res.status(200).json(item);
+    } catch (err) {
+      next(err);
+    }
+  },
+
   async create(req, res, next) {
     try {
       const value = req.body;

@@ -9,6 +9,20 @@ const salesService = {
     quantity: Joi.number().integer().required().min(1),
   })),
 
+  async list() {
+    const items = await salesModel.list();
+    return items;
+  },
+
+  async listId(id) {
+    const item = await salesModel.listId(id);
+    if (!item || item.length === 0) {
+      throw new Error('Sale not found');
+    }
+
+    return item;
+  },
+
   async createSaleProduct(sales) {
     const id = await salesModel.create();
     await Promise
