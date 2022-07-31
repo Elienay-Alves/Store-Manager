@@ -35,8 +35,8 @@ const productController = {
       const result = await productService.update(name, id);
       return res.status(200).json(result);
     } catch (err) {
-      next(err)
-    };
+      next(err);
+    }
   },
 };
 
