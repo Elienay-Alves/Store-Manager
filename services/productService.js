@@ -39,10 +39,10 @@ const productService = {
   },
 
   async delete(id) {
-    await this.readId(id)
+    await this.readId(id);
     await productModel.delete(id);
     return true;
-  }
+  },
 };
 
 module.exports = productService;
