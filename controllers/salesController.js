@@ -4,21 +4,6 @@ const productService = require('../services/productService');
 const salesController = {
   /** @type {import('express').RequestHandler} */
 
-  async list(_req, res) {
-    const items = await salesService.list();
-    return res.status(200).json(items);
-  },
-
-  async listId(req, res, next) {
-    try {
-      const { id } = req.params;
-      const item = await salesService.listId(id);
-      return res.status(200).json(item);
-    } catch (err) {
-      next(err);
-    }
-  },
-
   async create(req, res, next) {
     try {
       const value = req.body;
@@ -26,7 +11,7 @@ const salesController = {
         .all(value.map((item) => salesService.validateBodyCreate(item)));
 
       await Promise
-        .all(value.map((item) => productService.listId(item.productId)));
+        .all(value.map((item) => productService.readId(item.productId)));
 
       const result = await salesService.createSaleProduct(data);
 
@@ -35,6 +20,22 @@ const salesController = {
       next(err);
     }
   },
+
+  async read(_req, res) {
+    const items = await salesService.read();
+    return res.status(200).json(items);
+  },
+
+  async readId(req, res, next) {
+    try {
+      const { id } = req.params;
+      const item = await salesService.readId(id);
+      return res.status(200).json(item);
+    } catch (err) {
+      next(err);
+    }
+  },
+
 };
 
 module.exports = salesController;

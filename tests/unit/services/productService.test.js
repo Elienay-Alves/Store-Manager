@@ -9,30 +9,30 @@ chai.use(chaiAsPromised);
 describe('services/productServices', () => {
   beforeEach(sinon.restore);
 
-  describe('list', () => {
+  describe('read', () => {
     it("Retorna um erro", () => {
-      sinon.stub(productModel, "list").rejects();
-      const result = productService.list();
+      sinon.stub(productModel, "read").rejects();
+      const result = productService.read();
       chai.expect(result).to.eventually.be.rejected;
     });
 
     it('Retorna uma lista', () => {
-      sinon.stub(productModel, 'list').resolves([{}]);
-      const result = productService.list();
+      sinon.stub(productModel, 'read').resolves([{}]);
+      const result = productService.read();
       chai.expect(result).to.eventually.be.equal([{}]);
     })
   });
-  describe('listId', () => {
+  describe('readId', () => {
     it('Retorna um erro', () => {
-      sinon.stub(productModel, 'listId').rejects();
-      const result = productService.listId(1);
+      sinon.stub(productModel, 'readId').rejects();
+      const result = productService.readId(1);
       chai.expect(result).to.eventually.be.rejected;
     });
 
 
     it('Retorna um erro caso nada seja encontrado', () => {
-      sinon.stub(productModel, 'listId').resolves(false);
-      const result = productService.listId('a');
+      sinon.stub(productModel, 'readId').resolves(false);
+      const result = productService.readId('a');
       chai.expect(result).to.eventually.throw(Error);
     })
 
@@ -41,8 +41,8 @@ describe('services/productServices', () => {
         "id": 1,
         "name": "Martelo de Thor"
       }
-      sinon.stub(productModel, 'listId').resolves(item);
-      const result = await productService.listId('1');
+      sinon.stub(productModel, 'readId').resolves(item);
+      const result = await productService.readId('1');
       chai.expect(result).to.be.deep.equal(item);
     })
   })
