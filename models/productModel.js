@@ -28,6 +28,15 @@ const productModel = {
     const [item] = await db.query(sql, [name, id]);
     return item;
   },
+
+  async delete(id) {
+    const sql = `
+    DELETE FROM products
+    WHERE id = ?;`;
+
+    await db.query(sql, [id]);
+    return true;
+  }
 };
 
 module.exports = productModel;

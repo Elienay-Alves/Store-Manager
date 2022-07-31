@@ -38,6 +38,17 @@ const productController = {
       next(err);
     }
   },
+
+  async delete(req, res) {
+    try {
+      const { id } = req.params;
+      await productService.delete(id);
+
+      return res.status(204).json();
+    } catch (err) {
+      return res.status(404).json({ message: err.message });
+    }
+  },
 };
 
 module.exports = productController;
