@@ -17,7 +17,7 @@ const salesModel = {
     const sql = `
     SELECT date, product_id AS productId, quantity FROM StoreManager.sales
     INNER JOIN sales_products ON sales.id = sales_products.sale_id
-    WHERE sale_id = ?;`
+    WHERE sale_id = ?;`;
     const [item] = await db.query(sql, [id]);
     return item;
   },
