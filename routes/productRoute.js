@@ -3,7 +3,7 @@ const productController = require('../controllers/productController');
 
 const product = Router();
 
-product.get('/search', productController.search)
+product.get('/search', productController.search);
 product.get('/', productController.read);
 product.get('/:id', productController.readId);
 product.put('/:id', productController.update);

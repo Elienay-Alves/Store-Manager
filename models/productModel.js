@@ -44,7 +44,7 @@ const productModel = {
 
     const [item] = await db.query(sql, [query]);
     return item;
-  }
+  },
 };
 
 module.exports = productModel;

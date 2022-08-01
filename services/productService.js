@@ -47,7 +47,7 @@ const productService = {
   async search(query) {
     const item = await productModel.search(query);
     return item;
-  }
+  },
 };
 
 module.exports = productService;

@@ -53,7 +53,7 @@ const productController = {
   async search(req, res, next) {
     try {
       const { q } = req.query;
-      const queryTerm = `%${ q }%`;
+      const queryTerm = `%${q}%`;
 
       if (!queryTerm || queryTerm === '') {
         const items = await productService.list();
