@@ -42,7 +42,7 @@ const salesService = {
       await Promise
         .all(sales.map((sale) => salesModel.update(sale, id)));
     } else {
-      await salesService.update(sales, id)
+      await salesService.update(sales, id);
     }
 
     const result = {
