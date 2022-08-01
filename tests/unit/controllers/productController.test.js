@@ -61,4 +61,28 @@ describe('controllers/productControllers', () => {
       chai.expect(productController.create({}, {})).eventually.to.be.rejected;
     });
   })
+
+  describe('update', () => {
+    it('Retorna erro se a validação falhar', () => {
+      sinon.stub(productService, 'validateBodyCreate').rejects();
+      chai.expect(productController.update({}, {})).to.eventually.be.rejected;
+    })
+
+    // it('Retorna um objeto', async () => {
+    //   sinon.stub(productService, 'validateBodyCreate').resolves();
+    //   sinon.stub(productService, 'update').resolves();
+    //   sinon.stub(productService, 'readId').resolves({});
+
+    //   const req = { params: { id: 2, name: "Martelo do Batman" } };
+
+    //   const res = {
+    //     status: sinon.stub().callsFake(() => res),
+    //     json: sinon.stub().returns(),
+    //   }
+
+    //   await productController.update(req, res);
+    //   chai.expect(res.status.getCall(0).args[0]).to.be.equal(200);
+    //   chai.expect(res.json.getCall(0).args[0]).to.be.deep.equal({})
+    // });
+  } )
 })

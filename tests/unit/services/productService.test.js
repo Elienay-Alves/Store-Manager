@@ -46,4 +46,51 @@ describe('services/productServices', () => {
       chai.expect(result).to.be.deep.equal(item);
     })
   })
+
+  describe('create', () => {
+
+    const value = {
+      name: "Matrix",
+    }
+
+    it('Retorna um erro', () => {
+      sinon.stub(productModel, 'create').rejects();
+      const result = productService.create(value)
+      chai.expect(result).to.eventually.be.rejected;
+    });
+
+    it('Retorna um id"', () => {
+      sinon.stub(productModel, 'create').resolves(1);
+      const result = productService.create(value)
+      chai.expect(result).to.eventually.equal(1);
+    });
+  });
+
+  describe('update', () => {
+    it('Retorna um erro', () => {
+      sinon.stub(productModel, 'update').rejects();
+      const result = productService.update(0, {});
+      chai.expect(result).to.eventually.be.rejected;
+    });
+    it('Retorna undefined', () => {
+      sinon.stub(productModel, 'update').resolves();
+      const result = productService.delete(0, {});
+      chai.expect(result).to.eventually.be.undefined;
+    });
+  });
+
+  describe('delete', () => {
+    it('Retorna um erro', () => {
+      sinon.stub(productModel, 'delete').rejects();
+      const result = productService.delete(0);
+      chai.expect(result).to.eventually.be.rejected;
+    });
+    it('Retorna undefined', () => {
+      sinon.stub(productModel, 'delete').resolves();
+      const result = productService.delete(0);
+      chai.expect(result).to.eventually.be.undefined;
+    });
+  });
 });
+
+
