@@ -34,6 +34,16 @@ const salesModel = {
     return item;
   },
 
+  async update(sales, id) {
+    const { productId, quantity } = sales;
+    const sql = `UPDATE sales_products
+    SET product_id = ?, quantity = ?
+    WHERE sale_id = ? AND product_id = ?;`;
+
+    const [item] = await db.query(sql, [productId, quantity, id, productId]);
+    return item;
+  },
+
   async delete(id) {
     const sql = `
     DELETE FROM sales

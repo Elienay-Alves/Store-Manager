@@ -36,6 +36,21 @@ const salesController = {
     }
   },
 
+  async update(req, res, next) {
+    try {
+      const { id } = req.params;
+      const values = req.body;
+
+      await Promise.all(values.map((value) => salesService.validateBodyCreate(value)));
+      await Promise.all(values.map((value) => productService.readId(value.productId)));
+
+      const result = await salesService.update(values, id);
+      return res.status(200).json(result);
+    } catch (err) {
+      next(err);
+    }
+  },
+
   async delete(req, res) {
     try {
       const { id } = req.params;

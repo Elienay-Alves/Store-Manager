@@ -35,6 +35,23 @@ const salesService = {
     return item;
   },
 
+  async update(sales, id) {
+    await this.readId(id);
+
+    if (sales.length > 1) {
+      await Promise
+        .all(sales.map((sale) => salesModel.update(sale, id)));
+    } else {
+      await salesService.update(sales, id)
+    }
+
+    const result = {
+      saleId: id,
+      itemsUpdated: sales,
+    };
+    return result;
+  },
+
   async delete(id) {
     await this.readId(id);
     await salesModel.delete(id);
