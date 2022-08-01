@@ -37,6 +37,14 @@ const productModel = {
     await db.query(sql, [id]);
     return true;
   },
+
+  async search(query) {
+    const sql = `SELECT * FROM products
+    WHERE name LIKE ?`;
+
+    const [item] = await db.query(sql, [query]);
+    return item;
+  }
 };
 
 module.exports = productModel;

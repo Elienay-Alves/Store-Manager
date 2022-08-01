@@ -49,6 +49,23 @@ const productController = {
       return res.status(404).json({ message: err.message });
     }
   },
+
+  async search(req, res, next) {
+    try {
+      const { q } = req.query;
+      const queryTerm = `%${ q }%`;
+
+      if (!queryTerm || queryTerm === '') {
+        const items = await productService.list();
+        return res.status(200).json(items);
+      }
+
+      const item = await productService.search(queryTerm);
+      return res.status(200).json(item);
+    } catch (err) {
+      next(err);
+    }
+  },
 };
 
 module.exports = productController;

@@ -57,7 +57,6 @@ const salesService = {
     await salesModel.delete(id);
     return true;
   },
-
 };
 
 module.exports = salesService;
